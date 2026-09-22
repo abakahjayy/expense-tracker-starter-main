@@ -47,6 +47,7 @@ function Navbar({ theme, onToggleTheme, user, onLogout }) {
 
           {user ? (
             <>
+              <Link to="/dashboard" className="btn-outline">Dashboard</Link>
               <Avatar user={user} />
               <span className="navbar-greeting">Hi, {user.firstName || user.username || 'there'}</span>
               <button type="button" className="btn-outline" onClick={handleLogout}>

@@ -12,6 +12,12 @@ dist
 dist-ssr
 *.local
 
+# Environment variables (VITE_API_URL, etc.) - never commit real values,
+# .env.example documents what's needed.
+.env
+.env.*
+!.env.example
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json

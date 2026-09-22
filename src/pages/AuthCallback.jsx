@@ -25,7 +25,7 @@ function AuthCallback({ onLoggedIn }) {
       setStoredAuth(token, user || {});
       onLoggedIn?.(user || {});
       toast.success(`Signed in with Google${user?.firstName ? ` as ${user.firstName}` : ''}`);
-      navigate('/', { replace: true });
+      navigate('/dashboard', { replace: true });
     })();
 
     return () => {

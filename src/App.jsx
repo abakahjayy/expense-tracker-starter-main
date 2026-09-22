@@ -3,6 +3,7 @@ import { Route, Routes } from 'react-router-dom'
 import './App.css'
 import Navbar from './Navbar'
 import Footer from './Footer'
+import Landing from './pages/Landing'
 import Dashboard from './pages/Dashboard'
 import Login from './pages/Login'
 import Signup from './pages/Signup'
@@ -57,7 +58,8 @@ function App() {
 
       <main className="app-main">
         <Routes>
-          <Route path="/" element={<Dashboard onSessionExpired={handleSessionExpired} />} />
+          <Route path="/" element={<Landing />} />
+          <Route path="/dashboard" element={<Dashboard onSessionExpired={handleSessionExpired} />} />
           <Route path="/login" element={<Login onLoggedIn={handleLoggedIn} />} />
           <Route path="/signup" element={<Signup onLoggedIn={handleLoggedIn} />} />
           <Route path="/auth/callback" element={<AuthCallback onLoggedIn={handleLoggedIn} />} />

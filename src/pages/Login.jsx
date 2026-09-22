@@ -39,7 +39,7 @@ function Login({ onLoggedIn }) {
       setStoredAuth(data.token, user || fallbackUser);
       onLoggedIn?.(user || fallbackUser);
       toast.success(`Welcome back, ${user?.firstName || user?.username || 'there'}!`);
-      navigate('/');
+      navigate('/dashboard');
     } catch (err) {
       const message = err.message || 'Something went wrong. Please try again.';
       setError(message);

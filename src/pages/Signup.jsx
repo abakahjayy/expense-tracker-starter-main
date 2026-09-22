@@ -51,7 +51,7 @@ function Signup({ onLoggedIn }) {
       setStoredAuth(data.token, user || fallbackUser);
       onLoggedIn?.(user || fallbackUser);
       toast.success(`Account created — welcome, ${firstName}!`);
-      navigate('/');
+      navigate('/dashboard');
     } catch (err) {
       const message = err.message || 'Something went wrong. Please try again.';
       setError(message);

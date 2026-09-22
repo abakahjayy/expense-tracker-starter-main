@@ -2,8 +2,10 @@ import { useState } from 'react'
 import Summary from '../Summary'
 import TransactionForm from '../TransactionForm'
 import TransactionList from '../TransactionList'
+import { useToast } from '../toastContext'
 
 function Dashboard() {
+  const toast = useToast();
   const [transactions, setTransactions] = useState([
     { id: 1, description: "Salary", amount: 5000, type: "income", category: "salary", date: "2025-01-01" },
     { id: 2, description: "Rent", amount: 1200, type: "expense", category: "housing", date: "2025-01-02" },
@@ -19,10 +21,13 @@ function Dashboard() {
 
   const handleAddTransaction = (newTransaction) => {
     setTransactions([...transactions, newTransaction]);
+    toast.success(`Added "${newTransaction.description}"`);
   };
 
   const handleDeleteTransaction = (id) => {
+    const removed = transactions.find(t => t.id === id);
     setTransactions(transactions.filter(t => t.id !== id));
+    toast.info(removed ? `Deleted "${removed.description}"` : 'Transaction deleted');
   };
 
   return (

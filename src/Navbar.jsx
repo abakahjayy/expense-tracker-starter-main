@@ -1,4 +1,5 @@
 import { Link, useNavigate } from 'react-router-dom'
+import Avatar from './Avatar'
 
 function Navbar({ theme, onToggleTheme, user, onLogout }) {
   const navigate = useNavigate();
@@ -44,6 +45,7 @@ function Navbar({ theme, onToggleTheme, user, onLogout }) {
 
           {user ? (
             <>
+              <Avatar user={user} />
               <span className="navbar-greeting">Hi, {user.firstName || user.username || 'there'}</span>
               <button type="button" className="btn-outline" onClick={handleLogout}>
                 Log out

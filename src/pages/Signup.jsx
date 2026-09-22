@@ -1,10 +1,12 @@
 import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { API_BASE_URL, googleLoginUrl } from '../config'
-import { setStoredAuth } from '../auth'
+import { setStoredAuth, fetchCurrentUser } from '../auth'
+import { useToast } from '../toastContext'
 
 function Signup({ onLoggedIn }) {
   const navigate = useNavigate();
+  const toast = useToast();
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [username, setUsername] = useState("");
@@ -44,11 +46,16 @@ function Signup({ onLoggedIn }) {
         throw new Error(data.message || data.msg || data.error || 'Sign up failed. Please try again.');
       }
 
-      setStoredAuth(data.token, { userId: data.userId, firstName, username, email });
-      onLoggedIn?.({ userId: data.userId, firstName, username, email });
+      const user = await fetchCurrentUser(data.token);
+      const fallbackUser = { userId: data.userId, firstName, username, email };
+      setStoredAuth(data.token, user || fallbackUser);
+      onLoggedIn?.(user || fallbackUser);
+      toast.success(`Account created — welcome, ${firstName}!`);
       navigate('/');
     } catch (err) {
-      setError(err.message || 'Something went wrong. Please try again.');
+      const message = err.message || 'Something went wrong. Please try again.';
+      setError(message);
+      toast.error(message);
     } finally {
       setSubmitting(false);
     }

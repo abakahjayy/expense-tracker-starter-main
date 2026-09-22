@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { Route, Routes } from 'react-router-dom'
 import './App.css'
 import Navbar from './Navbar'
@@ -8,6 +8,7 @@ import Login from './pages/Login'
 import Signup from './pages/Signup'
 import AuthCallback from './pages/AuthCallback'
 import { clearStoredAuth, getStoredAuth } from './auth'
+import { useToast } from './toastContext'
 
 function getInitialTheme() {
   const stored = localStorage.getItem('theme');
@@ -18,6 +19,7 @@ function getInitialTheme() {
 function App() {
   const [theme, setTheme] = useState(getInitialTheme);
   const [user, setUser] = useState(() => getStoredAuth()?.user ?? null);
+  const toast = useToast();
 
   useEffect(() => {
     document.documentElement.setAttribute('data-theme', theme);
@@ -28,13 +30,14 @@ function App() {
     setTheme(t => (t === 'dark' ? 'light' : 'dark'));
   };
 
-  const handleLoggedIn = (loggedInUser) => {
+  const handleLoggedIn = useCallback((loggedInUser) => {
     setUser(loggedInUser);
-  };
+  }, []);
 
   const handleLogout = () => {
     clearStoredAuth();
     setUser(null);
+    toast.info('Logged out');
   };
 
   return (

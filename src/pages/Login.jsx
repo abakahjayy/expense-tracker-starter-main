@@ -1,8 +1,8 @@
 import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import { API_BASE_URL, googleLoginUrl } from '../config'
-import { setStoredAuth, fetchCurrentUser } from '../auth'
-import { useToast } from '../toastContext'
+import { API_BASE_URL, googleLoginUrl } from '../utils/config'
+import { setStoredAuth, fetchCurrentUser } from '../utils/auth'
+import { useToast } from '../hooks/useToast'
 
 function Login({ onLoggedIn }) {
   const navigate = useNavigate();

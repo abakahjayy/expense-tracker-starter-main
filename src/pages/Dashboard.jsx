@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import Summary from '../Summary'
-import TransactionForm from '../TransactionForm'
-import TransactionList from '../TransactionList'
-import { useToast } from '../toastContext'
-import { getStoredAuth } from '../auth'
-import { listTransactions, addTransaction, removeTransaction } from '../transactionsApi'
+import Summary from '../components/Summary'
+import TransactionForm from '../components/TransactionForm'
+import TransactionList from '../components/TransactionList'
+import { useToast } from '../hooks/useToast'
+import { getStoredAuth } from '../utils/auth'
+import { listTransactions, addTransaction, removeTransaction } from '../utils/transactionsApi'
 
 const categories = ["food", "housing", "utilities", "transport", "entertainment", "salary", "other"];
 

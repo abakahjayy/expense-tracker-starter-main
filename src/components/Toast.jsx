@@ -1,5 +1,5 @@
 import { useCallback, useRef, useState } from 'react'
-import { ToastContext } from './toastContext'
+import { ToastContext } from '../hooks/useToast'
 
 let idCounter = 0
 const AUTO_DISMISS_MS = 4000

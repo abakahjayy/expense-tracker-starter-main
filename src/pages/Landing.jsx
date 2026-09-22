@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { getStoredAuth } from '../auth'
+import { getStoredAuth } from '../utils/auth'
 
 const FEATURES = [
   {

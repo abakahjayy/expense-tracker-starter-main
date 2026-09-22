@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import { useNavigate, useSearchParams } from 'react-router-dom'
-import { setStoredAuth, fetchCurrentUser } from '../auth'
-import { useToast } from '../toastContext'
+import { setStoredAuth, fetchCurrentUser } from '../utils/auth'
+import { useToast } from '../hooks/useToast'
 
 function AuthCallback({ onLoggedIn }) {
   const navigate = useNavigate();

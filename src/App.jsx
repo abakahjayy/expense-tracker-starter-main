@@ -1,15 +1,15 @@
 import { useCallback, useEffect, useState } from 'react'
 import { Route, Routes } from 'react-router-dom'
 import './App.css'
-import Navbar from './Navbar'
-import Footer from './Footer'
+import Navbar from './components/Navbar'
+import Footer from './components/Footer'
 import Landing from './pages/Landing'
 import Dashboard from './pages/Dashboard'
 import Login from './pages/Login'
 import Signup from './pages/Signup'
 import AuthCallback from './pages/AuthCallback'
-import { clearStoredAuth, getStoredAuth } from './auth'
-import { useToast } from './toastContext'
+import { clearStoredAuth, getStoredAuth } from './utils/auth'
+import { useToast } from './hooks/useToast'
 
 function getInitialTheme() {
   const stored = localStorage.getItem('theme');

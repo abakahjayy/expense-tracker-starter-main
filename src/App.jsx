@@ -40,13 +40,24 @@ function App() {
     toast.info('Logged out');
   };
 
+  // The stored token can go bad without the user ever clicking "log out"
+  // (it's for an account that no longer exists, the DB was reseeded, etc.).
+  // Any API call can discover this, so give them one shared way to drop
+  // back to a clean, logged-out state instead of silently retrying forever.
+  const handleSessionExpired = useCallback(() => {
+    clearStoredAuth();
+    setUser(null);
+    toast.error('Your session has expired. Please log in again.');
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   return (
     <div className="app">
       <Navbar theme={theme} onToggleTheme={toggleTheme} user={user} onLogout={handleLogout} />
 
       <main className="app-main">
         <Routes>
-          <Route path="/" element={<Dashboard />} />
+          <Route path="/" element={<Dashboard onSessionExpired={handleSessionExpired} />} />
           <Route path="/login" element={<Login onLoggedIn={handleLoggedIn} />} />
           <Route path="/signup" element={<Signup onLoggedIn={handleLoggedIn} />} />
           <Route path="/auth/callback" element={<AuthCallback onLoggedIn={handleLoggedIn} />} />

@@ -32,7 +32,6 @@ function TransactionForm({ categories, onAddTransaction }) {
     }
 
     onAddTransaction({
-      id: Date.now(),
       description: trimmedDescription,
       amount: numericAmount,
       type,

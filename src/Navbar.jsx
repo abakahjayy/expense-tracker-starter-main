@@ -15,7 +15,9 @@ function Navbar({ theme, onToggleTheme, user, onLogout }) {
         <Link to="/" className="navbar-brand">
           <span className="navbar-logo" aria-hidden="true">
             <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-              <path d="M12 2a10 10 0 1 0 10 10" /><path d="M12 2v10h10" />
+              <path d="M21 12V7H5a2 2 0 0 1 0-4h14v4" />
+              <path d="M3 5v14a2 2 0 0 0 2 2h16v-5" />
+              <path d="M18 12a2 2 0 0 0 0 4h4v-4z" />
             </svg>
           </span>
           Finance Tracker
